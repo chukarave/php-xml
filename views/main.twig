@@ -13,6 +13,9 @@
                  <ul>
                        <li> <a href=" {{ item.link }} ">{{ item.title }}</a></h4>
                  </ul>
+                       {{ item.description|striptags }}
+
+
                 {% endfor  %}
 
             {% endblock %}
