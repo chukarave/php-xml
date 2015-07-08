@@ -8,16 +8,17 @@
         </header>
         <section>
             {% block content %}
-
+                <ul>
                 {% for item in feed %}
-                 <ul>
-                       <li> <a href=" {{ item.link }} ">{{ item.title }}</a></h4>
-                 </ul>
-                       {{ item.description|striptags }}
-
-
+                    <li>
+                        <h4><a href=" {{ item.link }}" target="_blank">{{ item.title }}</a></h4>
+                        <p>{{ item.pubDate|date("D, F jS \\a\\t g:ia") }}</p>
+                        <div class="description">
+                            {{ item.description|striptags('<img><a><p>')|raw }}
+                        </div>
+                    </li>
                 {% endfor  %}
-
+                 </ul>
             {% endblock %}
         </section>
         <footer>
