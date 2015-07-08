@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+    <head>
+    </head>
+    <body>
+        <header>
+            <h3>EatingWell Blog RSS Feed</h3>
+        </header>
+        <section>
+            {% block content %}
+
+                {% for item in feed %}
+                 <ul>
+                       <li> <a href=" {{ item.link }} ">{{ item.title }}</a></h4>
+                 </ul>
+                {% endfor  %}
+
+            {% endblock %}
+        </section>
+        <footer>
+        </footer>
+    </body>
+</html>
