@@ -14,25 +14,28 @@ $app->register(new TwigServiceProvider(), [
 
 
 $app->get("/", function() use ($app){
-    $rss_url ='http://feeds.feedburner.com/EatingwellBlogs-AllBlogPosts?format=xml';
 
-    $xml = simplexml_load_file($rss_url);
-    $feed = $xml->entry;
-    echo $feed;
-    return $app['twig']->render('main.twig', array ('feed' => $feed);
+    return $app['twig']->render('select.twig');
 });
 
-/*
-$app->get("/", function() use ($app){
-    $rss_url ='http://feeds.feedburner.com/EatingwellBlogs-AllBlogPosts?format=xml';
-
+$app->get("/feed", function() use ($app){
+    $rss_url = $_GET['url'];
     $xml = simplexml_load_file($rss_url);
-    $feed = $xml->channel->item;
-    $desc = strip_tags($feed->description, '<a></a>');
+    $dropdown = $_GET['feed'];
 
-    return $app['twig']->render('main.twig', array ('feed' => $feed, 'desc' => $desc));
+    if ($dropdown == "1") {
+
+        $feed = $xml->channel->item;
+    } else if ($dropdown == "2") {
+
+        $feed = $xml->entry;
+    } 
+
+    return $app['twig']->render('main.twig', ['feed' => $feed]);
 });
- */
+
+
+
 $app->run();
 
 

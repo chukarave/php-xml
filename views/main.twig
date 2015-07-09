@@ -1,27 +1,17 @@
-<!doctype html>
-<html>
-    <head>
-    </head>
-    <body>
-        <header>
-            <h3>EatingWell Blog RSS Feed</h3>
-        </header>
-        <section>
-            {% block content %}
-                <ul>
-                {% for item in feed %}
-                    <li>
-                        <h4><a href=" {{ item.link }}" target="_blank">{{ item.title }}</a></h4>
-                        <p>{{ item.pubDate|date("D, F jS \\a\\t g:ia") }}</p>
-                        <div class="description">
-                            {{ item.description|striptags('<img><a><p>')|raw }}
-                        </div>
-                    </li>
-                {% endfor  %}
-                 </ul>
-            {% endblock %}
-        </section>
-        <footer>
-        </footer>
-    </body>
-</html>
+{% extends "layout.twig"%}
+
+{% block content %}
+
+    <ul>
+        {% for item in feed %}
+            <li>
+                <h4><a href=" {{ item.link }}" target="_blank">{{ item.title }}</a></h4>
+                <p>{{ item.pubDate|date("D, F jS \\a\\t g:ia") }}</p>
+                   {{ item.description|striptags('<img><a><p><br>')|raw }}
+                   {{ item.summary }}
+                   {{ item.content|striptags('<img><a><p><br>')|raw }}
+            </li>
+        {% endfor  %}
+    </ul>
+
+{% endblock %}
