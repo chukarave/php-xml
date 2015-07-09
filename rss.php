@@ -5,6 +5,8 @@ require "vendor/autoload.php";
 use Silex\Application;
 use Silex\Provider\TwigServiceProvider;
 
+date_default_timezone_set("Europe/Berlin");
+
 $app = new Silex\Application();
 $app->register(new Silex\Provider\SessionServiceProvider());
 
