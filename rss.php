@@ -23,12 +23,11 @@ $app->get("/", function() use ($app){
 $app->get("/feed", function() use ($app){
     $rss_url = $_GET['url'];
     $xml = simplexml_load_file($rss_url);
-    $dropdown = $_GET['feed'];
 
-    if ($dropdown == "1") {
+    if ($xml->getName() == "rss") {
 
         $feed = $xml->channel->item;
-    } else if ($dropdown == "2") {
+    } else if ($xml->getName() == "feed") {
 
         $feed = $xml->entry;
     } 
